@@ -9,5 +9,5 @@ RUN npm install
 # Copy source code
 COPY server.js ./
 
-EXPOSE 8280
+EXPOSE 8282
 CMD ["npm", "start"]

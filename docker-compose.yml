@@ -3,10 +3,10 @@ services:
     build: .
     container_name: mock_api_node
     environment:
-      - PORT=8280
+      - PORT=8282
       - MONGO_URI=mongodb://mongo:27017/mock-service
     ports:
-      - "8280:8280"
+      - "8282:8282"
     volumes:
       - ./server.js:/app/server.js
     depends_on:

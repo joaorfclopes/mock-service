@@ -3,7 +3,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 
 const app = express();
-const PORT = process.env.PORT || 8280;
+const PORT = process.env.PORT || 8282;
 const MONGO_URI =
   process.env.MONGO_URI || "mongodb://localhost:27017/mock-service";
 

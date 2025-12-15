@@ -22,7 +22,7 @@ A lightweight, containerized Express API that allows you to dynamically create, 
     docker-compose up --build
     ```
 
-    The API will be accessible at `http://localhost:8280`.
+    The API will be accessible at `http://localhost:8282`.
 
 ## Usage
 
@@ -30,7 +30,7 @@ A lightweight, containerized Express API that allows you to dynamically create, 
 
 Send a `POST` request to the admin endpoint to define a new route.
 
-**POST** `http://localhost:8280/api/mocks`
+**POST** `http://localhost:8282/api/mocks`
 
 **Body:**
 
@@ -51,7 +51,7 @@ Send a `POST` request to the admin endpoint to define a new route.
 
 Once created, the endpoint is immediately available.
 
-**POST** `http://localhost:8280/v1/users`
+**POST** `http://localhost:8282/v1/users`
 
 It will return the JSON response you defined.
 
