@@ -2,10 +2,10 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 
-const app = express();
-const PORT = process.env.PORT || 8282;
-const MONGO_URI =
-  process.env.MONGO_URI || "mongodb://localhost:27017/mock-service";
+require("dotenv").config();
+
+const PORT = process.env.PORT;
+const MONGO_URI = process.env.MONGO_URI;
 
 // Connect to MongoDB
 mongoose
@@ -20,6 +20,7 @@ const MockSchema = new mongoose.Schema({
   response: { type: mongoose.Schema.Types.Mixed },
 });
 const Mock = mongoose.model("Mock", MockSchema);
+const app = express();
 
 // Middleware
 app.use(express.json());
