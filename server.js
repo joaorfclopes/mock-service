@@ -34,6 +34,19 @@ app.get("/api/health", (req, res) => {
 // --- Endpoints to Manage Mocks ---
 app.post("/api/mocks", async (req, res) => {
   try {
+    // Strip query parameters from path to ensure dynamic matching
+    if (req.body.path && req.body.path.includes("?")) {
+      req.body.path = req.body.path.split("?")[0];
+    }
+
+    const existingMock = await Mock.findOne({
+      method: req.body.method,
+      path: req.body.path,
+    });
+    if (existingMock) {
+      return res.status(409).json({ error: "Mock already exists" });
+    }
+
     const mock = await Mock.create(req.body);
     res.status(201).json(mock);
   } catch (err) {
@@ -48,6 +61,10 @@ app.get("/api/mocks", async (req, res) => {
 
 app.put("/api/mocks/:id", async (req, res) => {
   try {
+    // Strip query parameters from path to ensure dynamic matching
+    if (req.body.path && req.body.path.includes("?")) {
+      req.body.path = req.body.path.split("?")[0];
+    }
     const mock = await Mock.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
