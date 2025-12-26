@@ -2,7 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 
-require("dotenv").config();
+require("dotenv").config({ quiet: true });
 
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;

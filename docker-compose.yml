@@ -21,5 +21,19 @@ services:
       - mongo_data:/data/db
     restart: unless-stopped
 
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: mock_api_ngrok
+    env_file:
+      - .env
+    command:
+      - "http"
+      - "--domain=${NGROK_DOMAIN}"
+      - "api:${PORT}"
+    ports:
+      - 4040:4040
+    depends_on:
+      - api
+
 volumes:
   mongo_data:
