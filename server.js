@@ -44,7 +44,9 @@ app.post("/api/mocks", async (req, res) => {
       path: req.body.path,
     });
     if (existingMock) {
-      return res.status(409).json({ error: "Mock already exists" });
+      return res
+        .status(409)
+        .json({ error: `Mock already exists with id: ${existingMock._id}` });
     }
 
     const mock = await Mock.create(req.body);
