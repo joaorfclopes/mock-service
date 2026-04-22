@@ -17,6 +17,7 @@ const MockSchema = new mongoose.Schema({
   method: { type: String, required: true },
   path: { type: String, required: true },
   statusCode: { type: Number, default: 200 },
+  delay: { type: Number, default: 0 },
   response: { type: mongoose.Schema.Types.Mixed },
 });
 const Mock = mongoose.model("Mock", MockSchema);
@@ -92,6 +93,9 @@ app.all("*", async (req, res, next) => {
     });
 
     if (mock) {
+      if (mock.delay > 0) {
+        await new Promise((resolve) => setTimeout(resolve, mock.delay * 1000));
+      }
       return res.status(mock.statusCode).json(mock.response);
     }
     next(); // Not found in mocks, proceed to 404
